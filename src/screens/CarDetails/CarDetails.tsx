@@ -27,23 +27,19 @@ import {
 } from './styles'
 import { Button } from '../../components/Button/Button'
 
-import { RoutesEnum } from '../../routes/types'
-
-type CarDetailsParams = {
-  car: CarDTO
-}
+import { RoutesEnum, RouteParams } from '../../routes/types'
 
 export function CarDetails(){
   const navigation = useNavigation()
   const route = useRoute()
-  const { car } = route.params as CarDetailsParams
+  const { car } = route.params as RouteParams
 
   function handleGoBak() {
     navigation.goBack()
   }
 
   function handleChooseRentalPeriod() {
-    navigation.navigate(RoutesEnum.SCHEDULING)
+    navigation.navigate(RoutesEnum.SCHEDULING, { car })
   }
 
   return (

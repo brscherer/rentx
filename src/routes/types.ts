@@ -8,6 +8,8 @@ export enum RoutesEnum {
   SCHEDULING_COMPLETE = 'SCHEDULING_COMPLETE',
 }
 
+export type RouteParams = { car: CarDTO, dates?: string[] }
+
 export type AppRootParamList = {
-  [key in keyof typeof RoutesEnum]: undefined | { car: CarDTO };
+  [key in keyof typeof RoutesEnum]: undefined | RouteParams;
 };
