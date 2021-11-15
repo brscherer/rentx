@@ -3,6 +3,8 @@ import { RectButtonProps } from 'react-native-gesture-handler';
 
 import GasolineSvg from '../../assets/gasoline.svg'
 
+import { CarDTO } from '../../dtos/CarDTO'
+
 import { 
   Container,
   Details,
@@ -16,17 +18,8 @@ import {
   CarImage,
 } from './styles'
 
-type CarData = {
-  brand: string;
-  name: string;
-  rent: {
-    period: string;
-    price: number;
-  };
-  thumbnail: string;
-}
 type CarProps = {
-  data: CarData;
+  data: CarDTO;
 }
 
 export function Car({ data, ...rest }: CarProps & RectButtonProps) {
