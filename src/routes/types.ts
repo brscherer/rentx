@@ -1,3 +1,5 @@
+import { CarDTO } from '../dtos/CarDTO'
+
 export enum RoutesEnum {
   HOME = 'HOME',
   CAR_DETAILS = 'CAR_DETAILS',
@@ -7,5 +9,5 @@ export enum RoutesEnum {
 }
 
 export type AppRootParamList = {
-  [key in keyof typeof RoutesEnum]: undefined;
+  [key in keyof typeof RoutesEnum]: undefined | { car: CarDTO };
 };

@@ -27,8 +27,8 @@ export function Home(){
 
   const navigation = useNavigation()
 
-  function handleCarDetails() {
-    navigation.navigate(RoutesEnum.CAR_DETAILS)
+  function handleCarDetails(car: CarDTO) {
+    navigation.navigate(RoutesEnum.CAR_DETAILS, { car })
   }
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export function Home(){
           : <CarList
               data={cars}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <Car data={item} onPress={handleCarDetails} />}
+              renderItem={({ item }) => <Car data={item} onPress={() => handleCarDetails(item)} />}
             />
       }
         

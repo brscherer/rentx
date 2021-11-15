@@ -47,6 +47,10 @@ export function SchedulingDetails(){
   const theme = useTheme()
   const navigation = useNavigation()
 
+  function handleGoBak() {
+    navigation.goBack()
+  }
+
   function handleConfirmRental() {
     navigation.navigate(RoutesEnum.SCHEDULING_COMPLETE)
   }
@@ -54,7 +58,7 @@ export function SchedulingDetails(){
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleGoBak} />
       </Header>
 
       <CarImages>

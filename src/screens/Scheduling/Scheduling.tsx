@@ -26,6 +26,10 @@ export function Scheduling() {
   const theme = useTheme()
   const navigation = useNavigation()
 
+  function handleGoBak() {
+    navigation.goBack()
+  }
+
   function handleConfirmPeriod() {
     navigation.navigate(RoutesEnum.SCHEDULING_DETAILS)
   }
@@ -38,7 +42,7 @@ export function Scheduling() {
         translucent
       />
       <Header>
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleGoBak} color={theme.colors.shape} />
 
         <Title>
           Choose one{'\n'}
