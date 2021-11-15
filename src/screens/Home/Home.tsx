@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "react-native";
 import { RFValue } from 'react-native-responsive-fontsize'
 
@@ -13,8 +14,11 @@ import {
   HeaderContent,
   TotalCars
 } from "./styles";
+import { RoutesEnum } from "../../routes/types";
 
 export function Home(){
+  const navigation = useNavigation()
+  
   const carData = {
     brand: 'Audi',
     name: 'RS 5 Coupé',
@@ -23,6 +27,10 @@ export function Home(){
       price: 120,
     },
     thumbnail: 'https://pngimg.com/uploads/audi/audi_PNG99491.png'
+  }
+
+  function handleCarDetails() {
+    navigation.navigate(RoutesEnum.CAR_DETAILS)
   }
 
   return (
@@ -47,7 +55,7 @@ export function Home(){
       <CarList
         data={[1,2,3,4,5,6,7,8]}
         keyExtractor={item => String(item)}
-        renderItem={({ item }) => <Car data={carData}></Car>}
+        renderItem={({ item }) => <Car data={carData} onPress={handleCarDetails} />}
       />
         
     </Container>

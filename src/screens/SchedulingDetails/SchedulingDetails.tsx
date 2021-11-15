@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { useTheme } from 'styled-components'
@@ -40,9 +41,15 @@ import {
   Footer,
 } from './styles'
 import { Button } from '../../components/Button/Button'
+import { RoutesEnum } from '../../routes/types'
 
 export function SchedulingDetails(){
   const theme = useTheme()
+  const navigation = useNavigation()
+
+  function handleConfirmRental() {
+    navigation.navigate(RoutesEnum.SCHEDULING_COMPLETE)
+  }
 
   return (
     <Container>
@@ -113,7 +120,7 @@ export function SchedulingDetails(){
       </Content>
 
       <Footer>
-        <Button title="Confirm" />
+        <Button title="Rental now" color={theme.colors.success} onPress={handleConfirmRental} />
       </Footer>
     </Container>
   )

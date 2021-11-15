@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import { Accessory } from '../../components/Accessory/Accessory'
 import { BackButton } from '../../components/BackButton/BackButton'
@@ -28,8 +29,15 @@ import {
   Footer,
 } from './styles'
 import { Button } from '../../components/Button/Button'
+import { RoutesEnum } from '../../routes/types'
 
 export function CarDetails(){
+  const navigation = useNavigation()
+
+  function handleChooseRentalPeriod() {
+    navigation.navigate(RoutesEnum.SCHEDULING)
+  }
+
   return (
     <Container>
       <Header>
@@ -68,7 +76,7 @@ export function CarDetails(){
       </Content>
 
       <Footer>
-        <Button title="Confirm" />
+        <Button title="Choose rental period" onPress={handleChooseRentalPeriod} />
       </Footer>
     </Container>
   )

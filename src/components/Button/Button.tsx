@@ -1,4 +1,6 @@
 import React from 'react'
+import { useTheme } from 'styled-components'
+import { RectButtonProps } from 'react-native-gesture-handler'
 
 import {
   Container,
@@ -10,9 +12,11 @@ type ButtonProps = {
   color?: string;
 }
 
-export function Button({ title, color, ...rest }: ButtonProps){
+export function Button({ title, color, ...rest }: ButtonProps & RectButtonProps){
+  const theme = useTheme()
+
   return (
-    <Container color={color} {...rest}>
+    <Container color={color || theme.colors.main} {...rest}>
       <Title>
         {title}
       </Title>

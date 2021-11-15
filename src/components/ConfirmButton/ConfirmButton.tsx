@@ -10,9 +10,9 @@ interface ConfirmButtonProps extends RectButtonProps {
   title: string
 }
 
-export function ConfirmButton({ title }: ConfirmButtonProps){
+export function ConfirmButton({ title, ...rest }: ConfirmButtonProps){
   return (
-    <Container>
+    <Container {...rest}>
       <Title>{title}</Title>
     </Container>
   )

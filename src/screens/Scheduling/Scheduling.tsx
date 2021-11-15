@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
@@ -19,9 +20,15 @@ import {
   Content,
   Footer,
 } from './styles'
+import { RoutesEnum } from '../../routes/types'
 
 export function Scheduling() {
   const theme = useTheme()
+  const navigation = useNavigation()
+
+  function handleConfirmPeriod() {
+    navigation.navigate(RoutesEnum.SCHEDULING_DETAILS)
+  }
 
   return (
     <Container>
@@ -34,9 +41,9 @@ export function Scheduling() {
         <BackButton onPress={() => {}} color={theme.colors.shape} />
 
         <Title>
-          Escolha uma{'\n'}
-          data de início e{'\n'}
-          fim do aluguel
+          Choose one{'\n'}
+          start date and{'\n'}
+          end of rent
         </Title>
 
         <RentalPeriod>
@@ -59,7 +66,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirm" />
+        <Button title="Confirm" onPress={handleConfirmPeriod} />
       </Footer>
     </Container>
   )
