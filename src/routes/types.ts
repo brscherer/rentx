@@ -6,6 +6,7 @@ export enum RoutesEnum {
   SCHEDULING = 'SCHEDULING',
   SCHEDULING_DETAILS = 'SCHEDULING_DETAILS',
   SCHEDULING_COMPLETE = 'SCHEDULING_COMPLETE',
+  MY_CARS = 'MY_CARS',
 }
 
 export type RouteParams = { car: CarDTO, dates?: string[] }

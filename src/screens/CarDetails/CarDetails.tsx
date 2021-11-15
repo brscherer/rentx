@@ -34,7 +34,7 @@ export function CarDetails(){
   const route = useRoute()
   const { car } = route.params as RouteParams
 
-  function handleGoBak() {
+  function handleGoBack() {
     navigation.goBack()
   }
 
@@ -45,7 +45,7 @@ export function CarDetails(){
   return (
     <Container>
       <Header>
-        <BackButton onPress={handleGoBak} />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImages>
@@ -81,7 +81,10 @@ export function CarDetails(){
       </Content>
 
       <Footer>
-        <Button title="Choose rental period" onPress={handleChooseRentalPeriod} />
+        <Button
+          title="Choose rental period"
+          onPress={handleChooseRentalPeriod}
+        />
       </Footer>
     </Container>
   )
