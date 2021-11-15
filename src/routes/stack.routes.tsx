@@ -7,13 +7,16 @@ import { Scheduling } from '../screens/Scheduling/Scheduling'
 import { SchedulingDetails } from '../screens/SchedulingDetails/SchedulingDetails'
 import { SchedulingComplete } from '../screens/SchedulingComplete/SchedulingComplete'
 import { MyCars } from '../screens/MyCars/MyCars'
+import { Splash } from '../screens/Splash/Splash'
+
 import { RoutesEnum } from './types'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export function StackRoutes(){
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator screenOptions={{ headerShown: false }} initialRouteName={RoutesEnum.SPLASH}>
+      <Screen name={RoutesEnum.SPLASH} component={Splash} />
       <Screen name={RoutesEnum.HOME} component={Home} />
       <Screen name={RoutesEnum.CAR_DETAILS} component={CarDetails} />
       <Screen name={RoutesEnum.SCHEDULING} component={Scheduling} />

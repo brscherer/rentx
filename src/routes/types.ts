@@ -1,6 +1,7 @@
 import { CarDTO } from '../dtos/CarDTO'
 
 export enum RoutesEnum {
+  SPLASH = 'SPLASH',
   HOME = 'HOME',
   CAR_DETAILS = 'CAR_DETAILS',
   SCHEDULING = 'SCHEDULING',
