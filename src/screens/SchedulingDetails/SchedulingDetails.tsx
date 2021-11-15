@@ -47,6 +47,7 @@ import { format, parseISO } from 'date-fns'
 
 export function SchedulingDetails(){
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodData>({} as RentalPeriodData)
+  const [loading, setLoading] = useState(false)
 
   const theme = useTheme()
   const navigation = useNavigation()
@@ -55,11 +56,12 @@ export function SchedulingDetails(){
 
   const rentTotal = dates.length * car.rent.price;
 
-  function handleGoBak() {
+  function handleGoBack() {
     navigation.goBack()
   }
 
   async function handleConfirmRental() {
+    setLoading(true)
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
 
     const unavailable_dates = [
@@ -68,6 +70,13 @@ export function SchedulingDetails(){
     ]
 
     try {
+      await api.post(`/schedules_byuser`, {
+        car,
+        user_id: 1, // @TODO: implement social login and use correct id;
+        startDate: format(parseISO(dates[0]), 'MM/dd/yyyy'),
+        endDate: format(parseISO(dates[dates.length - 1]), 'MM/dd/yyyy'),
+      })
+
       await api.put(`/schedules_bycars/${car.id}`, {
         id: car.id,
         unavailable_dates
@@ -76,6 +85,8 @@ export function SchedulingDetails(){
       navigation.navigate(RoutesEnum.SCHEDULING_COMPLETE)
     } catch (error) {
       Alert.alert('Error processing your scheduling')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -89,7 +100,7 @@ export function SchedulingDetails(){
   return (
     <Container>
       <Header>
-        <BackButton onPress={handleGoBak} />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImages>
@@ -158,7 +169,13 @@ export function SchedulingDetails(){
       </Content>
 
       <Footer>
-        <Button title="Rental now" color={theme.colors.success} onPress={handleConfirmRental} />
+        <Button 
+          title="Rental now"
+          color={theme.colors.success}
+          onPress={handleConfirmRental}
+          enabled={!loading}
+          loading={loading}
+        />
       </Footer>
     </Container>
   )

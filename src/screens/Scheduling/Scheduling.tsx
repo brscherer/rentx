@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { StatusBar, Alert } from 'react-native'
+import { StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 import { format, parseISO } from 'date-fns'
 
@@ -41,16 +41,11 @@ export function Scheduling() {
   const route = useRoute()
   const { car } = route.params as RouteParams
 
-  function handleGoBak() {
+  function handleGoBack() {
     navigation.goBack()
   }
 
   function handleConfirmPeriod() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert('Select date range to rent')
-      return;
-    }
-
     navigation.navigate(RoutesEnum.SCHEDULING_DETAILS, {
       car,
       dates: Object.keys(markedDates)
@@ -87,7 +82,7 @@ export function Scheduling() {
         translucent
       />
       <Header>
-        <BackButton onPress={handleGoBak} color={theme.colors.shape} />
+        <BackButton onPress={handleGoBack} color={theme.colors.shape} />
 
         <Title>
           Choose one{'\n'}
@@ -122,7 +117,11 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirm" onPress={handleConfirmPeriod} />
+        <Button 
+          title="Confirm"
+          onPress={handleConfirmPeriod}
+          enabled={!!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   )
