@@ -17,7 +17,7 @@ export function StackRoutes(){
   return (
     <Navigator screenOptions={{ headerShown: false }} initialRouteName={RoutesEnum.SPLASH}>
       <Screen name={RoutesEnum.SPLASH} component={Splash} />
-      <Screen name={RoutesEnum.HOME} component={Home} />
+      <Screen name={RoutesEnum.HOME} component={Home} options={{ gestureEnabled: false }} />
       <Screen name={RoutesEnum.CAR_DETAILS} component={CarDetails} />
       <Screen name={RoutesEnum.SCHEDULING} component={Scheduling} />
       <Screen name={RoutesEnum.SCHEDULING_DETAILS} component={SchedulingDetails} />
