@@ -20,7 +20,7 @@ import api from '../../services/api'
 import { CarDTO } from '../../dtos/CarDTO'
 
 import { Car } from "../../components/Car/Car";
-import { Loader } from "../../components/Loader/Loader";
+import { LoaderAnimated } from "../../components/LoaderAnimated/LoaderAnimated";
 
 import {
   CarList,
@@ -133,7 +133,7 @@ export function Home(){
 
       {
         loading 
-          ? <Loader /> 
+          ? <LoaderAnimated /> 
           : <CarList
               data={cars}
               keyExtractor={item => item.id}

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/core'
 
 import { BackButton } from '../../components/BackButton/BackButton'
 import { Car } from '../../components/Car/Car'
+import { LoaderAnimated } from '../../components/LoaderAnimated/LoaderAnimated'
 
 import api from '../../services/api'
 
@@ -26,7 +27,6 @@ import {
   CarFooterPeriod,
   CarFooterDate,
 } from './styles'
-import { Loader } from '../../components/Loader/Loader'
 
 interface CarProps {
   id: string;
@@ -83,7 +83,7 @@ export function MyCars() {
       </Header>
 
       { loading 
-          ? <Loader />
+          ? <LoaderAnimated />
           : <Content>
               <Appointments>
                 <AppointmentsTitle>Confirmed appointments</AppointmentsTitle>
