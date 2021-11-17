@@ -26,11 +26,26 @@ Also, you have to install Expo app in your device.
 - Clone this repository and enter into its folder;
 - Run `yarn` or `npm install` to install dependencies;
 
+### Setting up server
+
+In order to get the server communication with your device, you'll need change a small part of the server initialization script inside `package.json` file.
+- First, you'll need the get your local ip (usually start with 192.168...)
+- Then, change the `server` script in `package.json` accordingly to this format:
+
+```
+"server": "npx json-server ./src/services/server.json --watch --host <YOUR_IP_HERE> --port <PORT> --delay 700"
+```
+
+replace `<YOUR_IP_HERE>` by your current local IP.
+replace `<PORT>` with the port number you want the server running (I've already type port 8081, but feel free to use the available port number you want)
+
+> You can also change the `--delay` value to a higher or lower number, to simulate a delay time from requests
+
 ### With expo
 
 After installing expo globally:
 
-- Run `yarn server` to run json-server;
+- Run `yarn server` to run json-server (which was configured in the previous topic);
 - In another terminal, run `expo start` to run application;
 - A new tab should be opened in your browser pointing to `http://localhost:19002/`
 - Run the QR code at the bottom-left of screen with the Expo App you installed in your device
