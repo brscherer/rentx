@@ -60,14 +60,18 @@ export function SchedulingDetails(){
     navigation.goBack()
   }
 
+  async function getSchedulesByCar() {
+    try {
+      const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
+
+      return schedulesByCar.data.unavailable_dates
+    } catch {
+      return []
+    }
+  }
+
   async function handleConfirmRental() {
     setLoading(true)
-    const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
-
-    const unavailable_dates = [
-      ...schedulesByCar.data.unavailable_dates,
-      ...dates
-    ]
 
     try {
       await api.post(`/schedules_byuser`, {
@@ -77,10 +81,24 @@ export function SchedulingDetails(){
         endDate: format(parseISO(dates[dates.length - 1]), 'MM/dd/yyyy'),
       })
 
-      await api.put(`/schedules_bycars/${car.id}`, {
-        id: car.id,
-        unavailable_dates
-      })
+      const schedulesByCar = await getSchedulesByCar()
+
+      const unavailable_dates = [
+        ...schedulesByCar,
+        ...dates
+      ]
+
+      if (schedulesByCar.length) {
+        await api.put(`/schedules_bycars/${car.id}`, {
+          id: car.id,
+          unavailable_dates
+        })
+      } else {
+        await api.post(`/schedules_bycars`, {
+          id: car.id,
+          unavailable_dates
+        })
+      }
 
       navigation.navigate(RoutesEnum.SCHEDULING_COMPLETE)
     } catch (error) {
